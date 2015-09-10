@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommandLine;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +24,8 @@ namespace StaticMicVolumeApp
         public Form1()
         {
             InitializeComponent();
-            if (_mic == null)
+            var initiliazed = handleCmdLineArgs();
+            if (!initiliazed && _mic == null)
             {
                 _defaultVolume = Convert.ToInt32(tbVolume.Text);
                 _defaultInterval = Convert.ToInt64(tbInterval.Text) * 1000;
@@ -52,15 +54,18 @@ namespace StaticMicVolumeApp
             }
             else
             {
-                var volume = Convert.ToInt32(tbVolume.Text);
-                var interval = Convert.ToInt64(tbInterval.Text);
-                if (_defaultVolume != volume)
+                if (e.GetType() != typeof(CmdLineEventArgs))
                 {
-                    _mic.Volume = volume;
-                }
-                if (_defaultInterval != interval)
-                {
-                    _timer.Interval = interval * 1000;
+                    var volume = Convert.ToInt32(tbVolume.Text);
+                    var interval = Convert.ToInt64(tbInterval.Text);
+                    if (_defaultVolume != volume)
+                    {
+                        _mic.Volume = volume;
+                    }
+                    if (_defaultInterval != interval)
+                    {
+                        _timer.Interval = interval * 1000;
+                    }
                 }
                 _timer.Enabled = true;
                 this.button1.Text = "Running...";
@@ -95,6 +100,34 @@ namespace StaticMicVolumeApp
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private bool handleCmdLineArgs()
+        {
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length == 1)
+            {
+                return false;
+            }
+
+            args = args.Skip(1).ToArray();
+
+            bool validArgs = true;
+
+            var cmdLineOptions = Parser.Default.ParseArguments<CommandLineOptions>(args)
+                .MapResult(options => options, errors => { validArgs = false; return null; });
+
+            if (!validArgs)
+            {
+                return false;
+            }
+
+            _mic = new Microphone(cmdLineOptions.Volume);
+            _timer = new SystemTimer(cmdLineOptions.IntervalInMs);
+            _timer.Elapsed += _mic.SetVolume;
+            button1_Click(null, new CmdLineEventArgs());
+            btnMinimize_Click(null, null);
+            return true;
         }
 
     }
