@@ -39,11 +39,12 @@
             this.btnMinimize = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.cbMics = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 52);
+            this.button1.Location = new System.Drawing.Point(12, 93);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(66, 23);
             this.button1.TabIndex = 0;
@@ -53,7 +54,7 @@
             // 
             // tbVolume
             // 
-            this.tbVolume.Location = new System.Drawing.Point(60, 6);
+            this.tbVolume.Location = new System.Drawing.Point(60, 47);
             this.tbVolume.Name = "tbVolume";
             this.tbVolume.Size = new System.Drawing.Size(51, 20);
             this.tbVolume.TabIndex = 1;
@@ -63,7 +64,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 2;
@@ -72,7 +73,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 29);
+            this.label2.Location = new System.Drawing.Point(12, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 3;
@@ -80,7 +81,7 @@
             // 
             // tbInterval
             // 
-            this.tbInterval.Location = new System.Drawing.Point(60, 26);
+            this.tbInterval.Location = new System.Drawing.Point(60, 67);
             this.tbInterval.Name = "tbInterval";
             this.tbInterval.Size = new System.Drawing.Size(51, 20);
             this.tbInterval.TabIndex = 4;
@@ -98,7 +99,7 @@
             // 
             // btnMinimize
             // 
-            this.btnMinimize.Location = new System.Drawing.Point(84, 52);
+            this.btnMinimize.Location = new System.Drawing.Point(84, 93);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(77, 23);
             this.btnMinimize.TabIndex = 5;
@@ -109,7 +110,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(117, 9);
+            this.label3.Location = new System.Drawing.Point(117, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 6;
@@ -118,17 +119,26 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(117, 29);
+            this.label4.Location = new System.Drawing.Point(117, 70);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Seconds";
             // 
+            // cbMics
+            // 
+            this.cbMics.FormattingEnabled = true;
+            this.cbMics.Location = new System.Drawing.Point(15, 13);
+            this.cbMics.Name = "cbMics";
+            this.cbMics.Size = new System.Drawing.Size(141, 21);
+            this.cbMics.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(168, 82);
+            this.ClientSize = new System.Drawing.Size(168, 129);
+            this.Controls.Add(this.cbMics);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnMinimize);
@@ -160,6 +170,7 @@
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbMics;
     }
 }
 
